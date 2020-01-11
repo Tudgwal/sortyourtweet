@@ -2,7 +2,6 @@
 session_start();
 require 'get_data.php';
 $data = get_data();
-var_dump($_SESSION['token']);
 
 $conn = new mysqli($data["dbserver"], $data["dbuser"], $data["dbpassword"], $data["dbname"]);
 $sql = "SELECT TOKEN FROM users WHERE TOKEN =  '" . $_SESSION['token'] . "'";
@@ -13,3 +12,4 @@ if ($res == 0) {
     $conn->query($sql);
 }
 $conn->close();
+header('Location: ./index.php');

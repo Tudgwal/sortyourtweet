@@ -22,11 +22,4 @@ $answer =  $twitter->buildOauth($url, $requestMethod)
 $answer = explode('&', $answer);
 $oauth_token = substr($answer[0], 12);
 
-$url = 'https://api.twitter.com/oauth/authenticate';
-$getfield = '?oauth_token=' . $oauth_token;
-$requestMethod = 'GET';
-
-$twitter = new TwitterAPIExchange($settings);
-echo $twitter->setGetfield($getfield)
-    ->buildOauth($url, $requestMethod)
-    ->performRequest();
+header('Location: https://twitter.com/login/error?redirect_after_login=https%3A%2F%2Fapi.twitter.com%2Foauth%2Fauthenticate%3Foauth_token%3D'. $oauth_token);

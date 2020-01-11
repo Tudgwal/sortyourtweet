@@ -25,3 +25,4 @@ $token = substr($result[0], 12);
 $token_secret = substr($result[1], 19);
 $_SESSION['token'] = $token;
 $_SESSION['token_secret'] = $token_secret;
+header('Location: ./login.php');

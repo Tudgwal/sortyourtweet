@@ -1,4 +1,5 @@
 <?php
+session_start();
 require 'get_data.php';
 $data = get_data();
 ?>
