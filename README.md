@@ -1,2 +1,2 @@
 # sortyourtweet
-système de trie de ses tweet
+système de trie de tweet
