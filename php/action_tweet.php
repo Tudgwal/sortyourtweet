@@ -1,7 +1,20 @@
 <?php
+require_once('include/TwitterAPIExchange.php');
+
+function destroy_tweet($tweet_id){
+    $url = 'https://api.twitter.com/1.1/statuses/destroy/'. $tweet_id .'.json';
+    $requestMethod = 'POST';
+    $postfields = array(
+        'id' => $tweet_id
+    );
+    $twitter = new TwitterAPIExchange($_SESSION['Twitter_settings']);
+    echo $twitter->buildOauth($url, $requestMethod)
+        ->setPostfields($postfields)
+        ->performRequest();
+}
+
 function get_tweet($last_id)
 {
-    require_once('include/TwitterAPIExchange.php');
     $uid = explode('-', $_SESSION['Twitter_settings']['oauth_access_token']);
     $url = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
     if ($last_id)

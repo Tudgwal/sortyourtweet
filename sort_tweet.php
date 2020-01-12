@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'get_tweet.php';
+require 'php/action_tweet.php';
 if (empty($_SESSION['last_tweet']))
     $tweet = get_tweet(null);
 else
