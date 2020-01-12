@@ -1,20 +1,20 @@
 <?php
-require "get_data.php";
+session_start();
 require_once('include/TwitterAPIExchange.php');
-$data = get_data();
 $settings = array(
     'oauth_access_token' => "",
     'oauth_access_token_secret' => "",
-    'consumer_key' => $data['consumer_key'],
-    'consumer_secret' => $data['consumer_secret']
+    'consumer_key' => $_SESSION['consumer_key'],
+    'consumer_secret' => $_SESSION['consumer_secret']
 );
+$_SESSION['Twitter_settings'] = $settings;
 $callback_url =  "http://" . $_SERVER['SERVER_NAME'] . substr($_SERVER['REQUEST_URI'], 0, -17) . 'twitter_callback.php';
 $url = 'https://api.twitter.com/oauth/request_token';
 $requestMethod = 'POST';
 $postfields = array(
     'oauth_callback' => $callback_url
 );
-$twitter = new TwitterAPIExchange($settings);
+$twitter = new TwitterAPIExchange($_SESSION['Twitter_settings']);
 $answer =  $twitter->buildOauth($url, $requestMethod)
     ->setPostfields($postfields)
     ->performRequest();
