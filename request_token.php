@@ -8,7 +8,10 @@ $settings = array(
     'consumer_secret' => $_SESSION['consumer_secret']
 );
 $_SESSION['Twitter_settings'] = $settings;
-$callback_url =  "http://" . $_SERVER['SERVER_NAME'] . substr($_SERVER['REQUEST_URI'], 0, -17) . 'twitter_callback.php';
+if (substr($_SESSION['url'], -1) == '/')
+  $callback_url =  $_SESSION['url'] . 'twitter_callback.php';
+else
+  $callback_url =  $_SESSION['url'] . '/' .'twitter_callback.php';
 $url = 'https://api.twitter.com/oauth/request_token';
 $requestMethod = 'POST';
 $postfields = array(
@@ -21,5 +24,4 @@ $answer =  $twitter->buildOauth($url, $requestMethod)
 
 $answer = explode('&', $answer);
 $oauth_token = substr($answer[0], 12);
-
 header('Location: https://twitter.com/login/error?redirect_after_login=https%3A%2F%2Fapi.twitter.com%2Foauth%2Fauthenticate%3Foauth_token%3D'. $oauth_token);

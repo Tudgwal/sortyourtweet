@@ -3,6 +3,7 @@ DBSERVER=""
 DBNAME=""
 DBUSER=""
 DBPASSWORD=""
+URL=""
 
 ##twitter configuration
 consumer_key=""

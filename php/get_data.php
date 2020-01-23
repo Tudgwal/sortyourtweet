@@ -26,6 +26,9 @@ function parse_file($line, $result)
         case "consumer_secret":
             $result[5] = $data;
             break;
+      case "URL":
+            $result[6] = $data;
+            break;
     }
     return $result;
 }
@@ -46,7 +49,8 @@ function get_file_data($filename)
         "dbuser" => $result[2],
         "dbpassword" => $result[3],
         "consumer_key" => $result[4],
-        "consumer_secret" => $result[5]
+        "consumer_secret" => $result[5],
+        "url" => $result[6]
     );
     return $data;
 }

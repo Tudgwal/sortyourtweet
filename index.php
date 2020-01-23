@@ -4,6 +4,7 @@ require 'php/get_data.php';
 $data = get_data();
 $_SESSION['consumer_key'] = $data['consumer_key'];
 $_SESSION['consumer_secret'] = $data['consumer_secret'];
+$_SESSION['url'] = $data['url'];
 if (empty($_SESSION['Twitter_settings']['oauth_access_token']))
     $_SESSION['Twitter_settings']['oauth_access_token'] = null;
 
